@@ -11,8 +11,8 @@ function MyPosts() {
         <button>Remove</button>
       </div>
       <div className={s.posts}>
-        <Post message='Hi, how are you? ' like={15} />
-        <Post message='It is my first post' like={20} />
+        <Post message='Hi, how are you? ' likesCount='0' />
+        <Post message='It is my first post' likesCount='23' />
         {/* <Post />
         <Post />
         <Post /> */}
