@@ -1,15 +1,20 @@
 import s from './Post.module.css';
 
-function Post() {
+type MessagesType = {
+  message?: string;
+  like: number;
+};
+
+function Post(props: MessagesType) {
   return (
     <div className={s.item}>
       <img
         src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0tDgbDDHlJiBUoJutxzjKb8P7xUcQOOxOyg&usqp=CAU'
         alt=''
       />
-      post 1
+      {props.message}
       <div>
-        <span>like</span>
+        <span>like {props.like}</span>
       </div>
     </div>
   );

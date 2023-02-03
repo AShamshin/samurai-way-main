@@ -11,11 +11,11 @@ function MyPosts() {
         <button>Remove</button>
       </div>
       <div className={s.posts}>
+        <Post message='Hi, how are you? ' like={15} />
+        <Post message='It is my first post' like={20} />
+        {/* <Post />
         <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
+        <Post /> */}
       </div>
     </div>
   );
