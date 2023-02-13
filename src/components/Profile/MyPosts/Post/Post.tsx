@@ -1,11 +1,11 @@
 import s from './Post.module.css';
 
-type MessagesType = {
-  message?: string;
-  likesCount: string;
-};
+// type MessagesType = {
+//   message?: string;
+//   likesCount: string;
+// };
 
-function Post(props: MessagesType) {
+function Post(props: any) {
   return (
     <div className={s.item}>
       <img

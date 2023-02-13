@@ -1,9 +1,8 @@
-import { ArrayPostsType } from '../../..';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
 
-function MyPosts(props: ArrayPostsType) {
-  let postsElement = props.posts.map((p) => (
+function MyPosts(props: any) {
+  let postsElement = props.posts.map((p: any) => (
     <Post message={p.message} likesCount={p.likesCount} />
   ));
 

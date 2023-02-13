@@ -1,9 +1,8 @@
-import { ArrayPostsType } from '../..';
 import MyPosts from './MyPosts/MyPosts';
 import s from './Profile.module.css';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 
-const Profile = (props: ArrayPostsType) => {
+const Profile = (props: any) => {
   return (
     <div>
       <ProfileInfo />
