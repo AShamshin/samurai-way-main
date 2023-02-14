@@ -1,8 +1,13 @@
+import { PostType } from '../../../redux/state';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
 
-function MyPosts(props: any) {
-  let postsElement = props.posts.map((p: any) => (
+export type ProfilePageType = {
+  posts: PostType[];
+};
+
+function MyPosts(props: ProfilePageType) {
+  let postsElement = props.posts.map((p) => (
     <Post message={p.message} likesCount={p.likesCount} />
   ));
 

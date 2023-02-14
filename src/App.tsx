@@ -1,5 +1,4 @@
 import { BrowserRouter, Route } from 'react-router-dom';
-
 import './App.css';
 import Dialogs from './components/Dialogs/Dialogs';
 import Header from './components/Header/Header';
@@ -8,8 +7,12 @@ import Navbar from './components/Navbar/Navbar';
 import News from './components/News/News';
 import Profile from './components/Profile/Profile';
 import Settings from './components/Settings/Settings';
+import { RootStateType } from './redux/state';
+type AppType = {
+  state: RootStateType;
+};
 
-function App(props: any) {
+function App(props: AppType) {
   return (
     <BrowserRouter>
       <div className='app-wrapper'>
@@ -18,13 +21,11 @@ function App(props: any) {
         <div className='app-wrapper-content'>
           <Route
             path='/dialogs'
-            render={() => (
-              <Dialogs dialogs={props.dialogs} messages={props.messages} />
-            )}
+            render={() => <Dialogs state={props.state.dialogsPage} />}
           />
           <Route
             path='/profile'
-            render={() => <Profile posts={props.posts} />}
+            render={() => <Profile state={props.state.profilePage} />}
           />
 
           <Route path='/news' component={News} />
