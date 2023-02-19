@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { LegacyRef, RefObject } from 'react';
 import { ChangeEvent } from 'react';
 import { PostType } from '../../../redux/state';
 import s from './MyPosts.module.css';
@@ -13,13 +13,12 @@ function MyPosts(props: ProfilePageType) {
   let postsElement = props.posts.map((p) => (
     <Post message={p.message} likesCount={p.likesCount} />
   ));
-  let newPostElement = React.createRef<HTMLTextAreaElement>();
+  let newPostElement = React.createRef<any>();
 
   let addPost = () => {
-    debugger;
-    let text = newPostElement.current?.value;
-
+    let text = newPostElement.current.value;
     props.addPost(text);
+    newPostElement.current.value = '';
   };
 
   return (

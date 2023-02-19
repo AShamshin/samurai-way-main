@@ -8,7 +8,7 @@ import News from './components/News/News';
 import Profile from './components/Profile/Profile';
 import Settings from './components/Settings/Settings';
 import { RootStateType } from './redux/state';
-type AppType = {
+export type AppType = {
   state: RootStateType;
   addPost: (postMessage: string | undefined) => void;
 };
