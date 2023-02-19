@@ -10,7 +10,7 @@ import Settings from './components/Settings/Settings';
 import { RootStateType } from './redux/state';
 export type AppType = {
   state: RootStateType;
-  addPost: (postMessage: string | undefined) => void;
+  addPost: (postMessage: string) => void;
 };
 
 function App(props: AppType) {

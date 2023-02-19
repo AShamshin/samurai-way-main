@@ -1,7 +1,7 @@
 import s from './Post.module.css';
 
 type PostType = {
-  message: string | undefined;
+  message: string;
   likesCount: number;
 };
 
