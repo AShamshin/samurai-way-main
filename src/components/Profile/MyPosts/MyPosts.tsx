@@ -6,6 +6,7 @@ import Post from './Post/Post';
 
 export type ProfilePageType = {
   posts: PostType[];
+  addPost: (text: string | undefined) => void;
 };
 
 function MyPosts(props: ProfilePageType) {
@@ -13,10 +14,12 @@ function MyPosts(props: ProfilePageType) {
     <Post message={p.message} likesCount={p.likesCount} />
   ));
   let newPostElement = React.createRef<HTMLTextAreaElement>();
+
   let addPost = () => {
+    debugger;
     let text = newPostElement.current?.value;
 
-    return console.log(text);
+    props.addPost(text);
   };
 
   return (
@@ -26,7 +29,7 @@ function MyPosts(props: ProfilePageType) {
         <div>
           <textarea ref={newPostElement}></textarea>
         </div>
-        <button onClick={() => addPost()}>Add post</button>
+        <button onClick={addPost}>Add post</button>
         <button>Remove</button>
       </div>
       <div className={s.posts}>{postsElement}</div>

@@ -1,3 +1,4 @@
+import React from 'react';
 import { DialogsPageType } from '../../redux/state';
 import DialogItem from './DialogItem/DialogItem';
 import s from './Dialogs.module.css';
@@ -15,10 +16,24 @@ const Dialogs = (props: RootStateType) => {
     <Message message={m.message} />
   ));
 
+  let newMessageElement = React.createRef<HTMLTextAreaElement>();
+
+  let addMessage = () => {
+    let text = newMessageElement.current?.value;
+
+    return console.log(text);
+  };
+
   return (
     <div className={s.dialogs}>
       <div className={s.dialogsItem}>{dialogsElements}</div>
-      <div className={s.messages}>{messagesElements}</div>
+      <div className={s.messages}>
+        {messagesElements}
+        <div>
+          <textarea ref={newMessageElement}></textarea>
+          <button onClick={addMessage}>+</button>
+        </div>
+      </div>
     </div>
   );
 };
