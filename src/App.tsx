@@ -10,7 +10,8 @@ import Settings from './components/Settings/Settings';
 import { RootStateType } from './redux/state';
 export type AppType = {
   state: RootStateType;
-  addPost: (postMessage: string) => void;
+  addPost: () => void;
+  updateNewPostText: (newText: string) => void;
 };
 
 function App(props: AppType) {
@@ -28,8 +29,9 @@ function App(props: AppType) {
             path='/profile'
             render={() => (
               <Profile
-                state={props.state.profilePage}
+                profilePage={props.state.profilePage}
                 addPost={props.addPost}
+                updateNewPostText={props.updateNewPostText}
               />
             )}
           />

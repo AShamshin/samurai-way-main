@@ -6,7 +6,9 @@ import Post from './Post/Post';
 
 export type ProfilePageType = {
   posts: PostType[];
-  addPost: (text: string) => void;
+  newPostText: string;
+  addPost: () => void;
+  updateNewPostText: (newText: string) => void;
 };
 
 function MyPosts(props: ProfilePageType) {
@@ -16,11 +18,13 @@ function MyPosts(props: ProfilePageType) {
   let newPostElement = React.createRef<HTMLTextAreaElement>();
 
   let addPost = () => {
+    props.addPost();
+    props.updateNewPostText('');
+  };
+
+  let onPostChange = () => {
     if (newPostElement.current) {
-      props.addPost(newPostElement.current.value);
-    }
-    if (newPostElement.current) {
-      newPostElement.current.value = '';
+      props.updateNewPostText(newPostElement.current.value);
     }
   };
 
@@ -29,7 +33,11 @@ function MyPosts(props: ProfilePageType) {
       <h3>My posts</h3>
       <div>
         <div>
-          <textarea ref={newPostElement}></textarea>
+          <textarea
+            onChange={onPostChange}
+            ref={newPostElement}
+            value={props.newPostText}
+          />
         </div>
         <button onClick={addPost}>Add post</button>
         <button>Remove</button>
