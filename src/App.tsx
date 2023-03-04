@@ -1,4 +1,4 @@
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import './App.css';
 import Dialogs from './components/Dialogs/Dialogs';
 import Header from './components/Header/Header';
@@ -16,32 +16,30 @@ export type AppType = {
 
 function App(props: AppType) {
   return (
-    <BrowserRouter>
-      <div className='app-wrapper'>
-        <Header />
-        <Navbar />
-        <div className='app-wrapper-content'>
-          <Route
-            path='/dialogs'
-            render={() => <Dialogs state={props.state.dialogsPage} />}
-          />
-          <Route
-            path='/profile'
-            render={() => (
-              <Profile
-                profilePage={props.state.profilePage}
-                addPost={props.addPost}
-                updateNewPostText={props.updateNewPostText}
-              />
-            )}
-          />
+    <div className='app-wrapper'>
+      <Header />
+      <Navbar />
+      <div className='app-wrapper-content'>
+        <Route
+          path='/dialogs'
+          render={() => <Dialogs state={props.state.dialogsPage} />}
+        />
+        <Route
+          path='/profile'
+          render={() => (
+            <Profile
+              profilePage={props.state.profilePage}
+              addPost={props.addPost}
+              updateNewPostText={props.updateNewPostText}
+            />
+          )}
+        />
 
-          <Route path='/news' component={News} />
-          <Route path='/music' component={Music} />
-          <Route path='/settings' component={Settings} />
-        </div>
+        <Route path='/news' component={News} />
+        <Route path='/music' component={Music} />
+        <Route path='/settings' component={Settings} />
       </div>
-    </BrowserRouter>
+    </div>
   );
 }
 
