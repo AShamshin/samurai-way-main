@@ -7,11 +7,12 @@ import Navbar from './components/Navbar/Navbar';
 import News from './components/News/News';
 import Profile from './components/Profile/Profile';
 import Settings from './components/Settings/Settings';
-import { RootStateType } from './redux/state';
+import { RootStateType, ActionTypes } from './redux/state';
 export type AppType = {
   state: RootStateType;
-  addPost: () => void;
-  updateNewPostText: (newText: string) => void;
+  // addPost: () => void;
+  //updateNewPostText: (newText: string) => void;
+  dispatch: (action: ActionTypes) => void;
 };
 
 function App(props: AppType) {
@@ -29,8 +30,7 @@ function App(props: AppType) {
           render={() => (
             <Profile
               profilePage={props.state.profilePage}
-              addPost={props.addPost}
-              updateNewPostText={props.updateNewPostText}
+              dispatch={props.dispatch}
             />
           )}
         />

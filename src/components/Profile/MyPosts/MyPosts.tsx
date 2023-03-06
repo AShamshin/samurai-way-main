@@ -1,14 +1,16 @@
 import React from 'react';
 
-import { PostType } from '../../../redux/state';
+import { PostType, ActionTypes } from '../../../redux/state';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
 
 export type ProfilePageType = {
   posts: PostType[];
   newPostText: string;
-  addPost: () => void;
-  updateNewPostText: (newText: string) => void;
+  //addPost: () => void;
+  // updateNewPostText: (newText: string) => void;
+
+  dispatch: (action: ActionTypes) => void;
 };
 
 function MyPosts(props: ProfilePageType) {
@@ -18,13 +20,16 @@ function MyPosts(props: ProfilePageType) {
   let newPostElement = React.createRef<HTMLTextAreaElement>();
 
   let addPost = () => {
-    props.addPost();
-    props.updateNewPostText('');
+    props.dispatch({ type: 'ADD-POST' });
   };
 
   let onPostChange = () => {
     if (newPostElement.current) {
-      props.updateNewPostText(newPostElement.current.value);
+      let action = {
+        type: 'UPDATE-NEW-POST-TEXT',
+        newText: newPostElement.current.value,
+      };
+      props.dispatch(action);
     }
   };
 
