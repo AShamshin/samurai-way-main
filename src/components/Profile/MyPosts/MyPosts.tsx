@@ -1,15 +1,16 @@
 import React from 'react';
-
-import { PostType, ActionTypes } from '../../../redux/state';
+import {
+  PostType,
+  ActionTypes,
+  addPostActionCreator,
+  updateNewPostTextType,
+} from '../../../redux/state';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
 
 export type ProfilePageType = {
   posts: PostType[];
   newPostText: string;
-  //addPost: () => void;
-  // updateNewPostText: (newText: string) => void;
-
   dispatch: (action: ActionTypes) => void;
 };
 
@@ -20,16 +21,17 @@ function MyPosts(props: ProfilePageType) {
   let newPostElement = React.createRef<HTMLTextAreaElement>();
 
   let addPost = () => {
-    props.dispatch({ type: 'ADD-POST' });
+    props.dispatch(addPostActionCreator());
   };
 
   let onPostChange = () => {
     if (newPostElement.current) {
-      let action = {
-        type: 'UPDATE-NEW-POST-TEXT',
-        newText: newPostElement.current.value,
-      };
+      let text = newPostElement.current.value;
+      let action = updateNewPostTextType(text);
       props.dispatch(action);
+      //   let action = {
+      //     type: 'UPDATE-NEW-POST-TEXT', newText: text, };
+      //   props.dispatch(action);
     }
   };
 

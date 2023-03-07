@@ -10,8 +10,6 @@ import Settings from './components/Settings/Settings';
 import { RootStateType, ActionTypes } from './redux/state';
 export type AppType = {
   state: RootStateType;
-  // addPost: () => void;
-  //updateNewPostText: (newText: string) => void;
   dispatch: (action: ActionTypes) => void;
 };
 

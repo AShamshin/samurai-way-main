@@ -4,8 +4,6 @@ import s from './Profile.module.css';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 type RootStateType = {
   profilePage: ProfilePageType;
-  //addPost: () => void;
-  //updateNewPostText: (newText: string) => void;
   dispatch: (action: ActionTypes) => void;
 };
 
