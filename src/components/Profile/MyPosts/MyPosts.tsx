@@ -1,10 +1,11 @@
 import React from 'react';
+
 import {
-  PostType,
-  ActionTypes,
   addPostActionCreator,
   updateNewPostTextActionCreator,
-} from '../../../redux/state';
+} from '../../../redux/profile-reducer';
+
+import { PostType, ActionTypes } from '../../../redux/state';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
 
@@ -29,9 +30,6 @@ function MyPosts(props: ProfilePageType) {
       let text = newPostElement.current.value;
       let action = updateNewPostTextActionCreator(text);
       props.dispatch(action);
-      //   let action = {
-      //     type: 'UPDATE-NEW-POST-TEXT', newText: text, };
-      //   props.dispatch(action);
     }
   };
 
