@@ -7,22 +7,22 @@ import Navbar from './components/Navbar/Navbar';
 import News from './components/News/News';
 import Profile from './components/Profile/Profile';
 import Settings from './components/Settings/Settings';
-import { RootStateType, ActionTypes } from './redux/state';
-export type AppType = {
+import { RootStateType, ActionTypes, StoreType } from './redux/state';
+export type PropsType = {
+  store: StoreType;
   state: RootStateType;
   dispatch: (action: ActionTypes) => void;
 };
 
-function App(props: AppType) {
+const App: React.FC<PropsType> = (props) => {
+  const state = props.store.getState();
+
   return (
     <div className='app-wrapper'>
       <Header />
       <Navbar />
       <div className='app-wrapper-content'>
-        <Route
-          path='/dialogs'
-          render={() => <Dialogs state={props.state.dialogsPage} />}
-        />
+        <Route path='/dialogs' render={() => <Dialogs store={props.store} />} />
         <Route
           path='/profile'
           render={() => (
@@ -39,6 +39,6 @@ function App(props: AppType) {
       </div>
     </div>
   );
-}
+};
 
 export default App;

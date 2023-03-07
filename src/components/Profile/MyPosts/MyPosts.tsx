@@ -3,7 +3,7 @@ import {
   PostType,
   ActionTypes,
   addPostActionCreator,
-  updateNewPostTextType,
+  updateNewPostTextActionCreator,
 } from '../../../redux/state';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
@@ -27,7 +27,7 @@ function MyPosts(props: ProfilePageType) {
   let onPostChange = () => {
     if (newPostElement.current) {
       let text = newPostElement.current.value;
-      let action = updateNewPostTextType(text);
+      let action = updateNewPostTextActionCreator(text);
       props.dispatch(action);
       //   let action = {
       //     type: 'UPDATE-NEW-POST-TEXT', newText: text, };

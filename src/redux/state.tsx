@@ -7,7 +7,10 @@ export type StoreType = {
 };
 export type ActionTypes =
   | ReturnType<typeof addPostActionCreator>
-  | ReturnType<typeof updateNewPostTextType>;
+  | ReturnType<typeof updateNewPostTextActionCreator>
+  | ReturnType<typeof sendMessageCreator>
+  | ReturnType<typeof updateNewMessageBodyCreator>;
+
 export type MessageType = {
   id: number;
   message: string;
@@ -27,8 +30,8 @@ export type ProfilePageType = {
 };
 export type DialogsPageType = {
   dialogs: DialogType[];
-
   messages: MessageType[];
+  newMessageBody: string;
 };
 export type SidebarType = {};
 export type RootStateType = {
@@ -41,10 +44,19 @@ const ADD_POST = 'ADD-POST';
 
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 
+const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
+
+const SEND_MESSAGE = 'SEND-MESSAGE';
+
 export const addPostActionCreator = () => ({ type: ADD_POST } as const);
 
-export const updateNewPostTextType = (text: string) =>
+export const updateNewPostTextActionCreator = (text: string) =>
   ({ type: UPDATE_NEW_POST_TEXT, newText: text } as const);
+
+export const sendMessageCreator = () => ({ type: SEND_MESSAGE } as const);
+
+export const updateNewMessageBodyCreator = (body: string) =>
+  ({ type: UPDATE_NEW_MESSAGE_BODY, body: body } as const);
 
 let store: StoreType = {
   _state: {
@@ -71,6 +83,7 @@ let store: StoreType = {
         { id: 2, message: 'How is your it-kamasutra ?' },
         { id: 3, message: 'How are you ?' },
       ],
+      newMessageBody: '',
     },
     sidebar: {},
   },
@@ -98,6 +111,14 @@ let store: StoreType = {
       this._callSubscriber(this._state);
     } else if (action.type === UPDATE_NEW_POST_TEXT) {
       this._state.profilePage.newPostText = action.newText;
+      this._callSubscriber(this._state);
+    } else if (action.type === UPDATE_NEW_MESSAGE_BODY) {
+      this._state.dialogsPage.newMessageBody = action.body;
+      this._callSubscriber(this._state);
+    } else if (action.type === SEND_MESSAGE) {
+      let body = this._state.dialogsPage.newMessageBody;
+      this._state.dialogsPage.newMessageBody = '';
+      this._state.dialogsPage.messages.push({ id: 6, message: body });
       this._callSubscriber(this._state);
     }
   },
