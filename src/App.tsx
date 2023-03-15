@@ -7,14 +7,14 @@ import Navbar from './components/Navbar/Navbar';
 import News from './components/News/News';
 import Profile from './components/Profile/Profile';
 import Settings from './components/Settings/Settings';
-import { RootStateType, ActionTypes, StoreType } from './redux/state';
+import { RootStateType, ActionTypes, StoreType } from './redux/store';
 export type PropsType = {
   store: StoreType;
   state: RootStateType;
   dispatch: (action: ActionTypes) => void;
 };
 
-const App: React.FC<PropsType> = (props) => {
+const App: React.FC<any> = (props) => {
   const state = props.store.getState();
 
   return (
