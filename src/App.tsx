@@ -15,19 +15,14 @@ export type PropsType = {
   dispatch: (action: ActionTypes) => void;
 };
 
-const App: React.FC<any> = (props) => {
-  const state = props.store.getState();
-
+const App = () => {
   return (
     <div className='app-wrapper'>
       <Header />
       <Navbar />
       <div className='app-wrapper-content'>
-        <Route
-          path='/dialogs'
-          render={() => <DialogsContainer store={props.store} />}
-        />
-        <Route path='/profile' render={() => <Profile store={props.store} />} />
+        <Route path='/dialogs' render={() => <DialogsContainer />} />
+        <Route path='/profile' render={() => <Profile />} />
 
         <Route path='/news' component={News} />
         <Route path='/music' component={Music} />
