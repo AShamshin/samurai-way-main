@@ -10,5 +10,5 @@ let reducers = combineReducers({
   sidebarPage: sidebarReducer,
 });
 
-let store: StoreType = createStore(reducers);
+let store = createStore(reducers);
 export default store;
