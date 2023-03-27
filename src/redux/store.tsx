@@ -1,6 +1,7 @@
 import dialogsReducer from './dialogs-reducer';
 import profileReducer from './profile-reducer';
 import sidebarReducer from './sidebar-reducer';
+import { followAC, setUsersAC, unfollowAC } from './users-reducer';
 
 export type StoreType = {
   _state: RootStateType;
@@ -13,13 +14,16 @@ export type ActionTypes =
   | ReturnType<typeof addPostActionCreator>
   | ReturnType<typeof updateNewPostTextActionCreator>
   | ReturnType<typeof sendMessageCreator>
-  | ReturnType<typeof updateNewMessageBodyCreator>;
+  | ReturnType<typeof updateNewMessageBodyCreator>
+  | ReturnType<typeof followAC>
+  | ReturnType<typeof unfollowAC>
+  | ReturnType<typeof setUsersAC>;
 
-export type MessageType = {
+type MessageType = {
   id: number;
   message: string;
 };
-export type DialogType = {
+type DialogType = {
   id: number;
   name: string;
 };
