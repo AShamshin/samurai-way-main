@@ -1,37 +1,45 @@
+import axios from 'axios';
 import s from './users.module.css';
 import { UsersPropsType } from './UsersContainer';
+import userPhoto from '../../assets/images/user.png';
 
-let Users = (props: UsersPropsType) => {
+let Users = (props: any) => {
   if (props.usersPage.users.length === 0) {
-    props.setUsers([
-      {
-        id: 1,
-        photoUrl:
-          'https://cs.pikabu.ru/post_img/2014/01/15/10/1389803464_232888874.jpg',
-        followed: false,
-        fullName: 'Серя',
-        status: 'I am a Boss',
-        location: { city: 'Mich', country: 'Russia' },
-      },
-      {
-        id: 2,
-        photoUrl:
-          'https://cs.pikabu.ru/post_img/2014/01/15/10/1389803464_232888874.jpg',
-        followed: true,
-        fullName: 'Кудрявый',
-        status: 'FUTURAMMA',
-        location: { city: 'Omicron Persei 8', country: 'Russia' },
-      },
-      {
-        id: 3,
-        photoUrl:
-          'https://cs.pikabu.ru/post_img/2014/01/15/10/1389803464_232888874.jpg',
-        followed: false,
-        fullName: 'Алик',
-        status: 'Hello World',
-        location: { city: 'Mich', country: 'Russia' },
-      },
-    ]);
+    axios
+      .get('https://social-network.samuraijs.com/api/1.0/users')
+      .then((response) => {
+        props.setUsers(response.data.items);
+      });
+
+    // props.setUsers([
+    //   {
+    //     id: 1,
+    //     photoUrl:
+    //       'https://cs.pikabu.ru/post_img/2014/01/15/10/1389803464_232888874.jpg',
+    //     followed: false,
+    //     fullName: 'Серя',
+    //     status: 'I am a Boss',
+    //     location: { city: 'Mich', country: 'Russia' },
+    //   },
+    //   {
+    //     id: 2,
+    //     photoUrl:
+    //       'https://cs.pikabu.ru/post_img/2014/01/15/10/1389803464_232888874.jpg',
+    //     followed: true,
+    //     fullName: 'Кудрявый',
+    //     status: 'FUTURAMMA',
+    //     location: { city: 'Omicron Persei 8', country: 'Russia' },
+    //   },
+    //   {
+    //     id: 3,
+    //     photoUrl:
+    //       'https://cs.pikabu.ru/post_img/2014/01/15/10/1389803464_232888874.jpg',
+    //     followed: false,
+    //     fullName: 'Алик',
+    //     status: 'Hello World',
+    //     location: { city: 'Mich', country: 'Russia' },
+    //   },
+    // ]);
   }
 
   return (
@@ -40,7 +48,11 @@ let Users = (props: UsersPropsType) => {
         <div key={u.id}>
           <span>
             <div>
-              <img src={u.photoUrl} alt='' className={s.userPhoto} />
+              <img
+                src={u.photos.small !== null ? u.photos.small : userPhoto}
+                alt=''
+                className={s.userPhoto}
+              />
             </div>
             <div>
               {u.followed ? (
@@ -64,12 +76,12 @@ let Users = (props: UsersPropsType) => {
           </span>
           <span>
             <span>
-              <div>{u.fullName}</div>
+              <div>{u.name}</div>
               <div>{u.status}</div>
             </span>
             <span>
-              <div>{u.location.country}</div>
-              <div>{u.location.city}</div>
+              <div>{'u.location.country'}</div>
+              <div>{'u.location.city'}</div>
             </span>
           </span>
         </div>
