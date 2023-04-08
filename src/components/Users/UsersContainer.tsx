@@ -1,7 +1,7 @@
+import React from 'react';
 import { connect } from 'react-redux';
 import { AppStateType } from '../../redux/redux-store';
 import { Dispatch } from 'redux';
-import Users from './Users';
 import {
   followAC,
   InitialStateType,
@@ -11,10 +11,53 @@ import {
   unfollowAC,
   UserType,
 } from '../../redux/users-reducer';
+import axios from 'axios';
+import Users from './Users';
 
-type MapStatePropsType = {
-  // users: InitialStateType;
-  usersPage: InitialStateType;
+class UsersContainer extends React.Component<any> {
+  componentDidMount(): void {
+    axios
+      .get(
+        `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`
+      )
+      .then((response) => {
+        this.props.setUsers(response.data.items);
+        this.props.setUsersTotalCount(response.data.totalCount);
+      });
+  }
+
+  onPageChanged = (pageNumber: number) => {
+    this.props.setCurrentPage(pageNumber);
+
+    axios
+      .get(
+        `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`
+      )
+      .then((response) => {
+        this.props.setUsers(response.data.items);
+      });
+  };
+
+  render() {
+    return (
+      <Users
+        totalUsersCount={this.props.totalUsersCount}
+        pageSize={this.props.pageSize}
+        currentPage={this.props.currentPage}
+        onPageChanged={this.onPageChanged}
+        users={this.props.users}
+        follow={this.props.follow}
+        unfollow={this.props.unfollow}
+      />
+    );
+  }
+}
+
+export type MapStatePropsType = {
+  users: Array<UserType>;
+  pageSize: number;
+  totalUsersCount: number;
+  // usersPage: InitialStateType;
 };
 
 type MapDispatchPropsType = {
@@ -29,7 +72,9 @@ export type UsersPropsType = MapStatePropsType & MapDispatchPropsType;
 
 let mapStateToProps = (state: AppStateType): MapStatePropsType => {
   return {
-    usersPage: state.usersPage,
+    users: state.usersPage.users,
+    pageSize: state.usersPage.pageSize,
+    totalUsersCount: state.usersPage.totalUsersCount,
   };
 };
 
@@ -54,4 +99,4 @@ let mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Users);
+export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
