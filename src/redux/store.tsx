@@ -6,6 +6,7 @@ import {
   setCurrentPageAC,
   setUsersAC,
   setUsersTotalCountAC,
+  toggleIsFetchingAC,
   unfollowAC,
 } from './users-reducer';
 
@@ -25,7 +26,8 @@ export type ActionTypes =
   | ReturnType<typeof unfollowAC>
   | ReturnType<typeof setUsersAC>
   | ReturnType<typeof setCurrentPageAC>
-  | ReturnType<typeof setUsersTotalCountAC>;
+  | ReturnType<typeof setUsersTotalCountAC>
+  | ReturnType<typeof toggleIsFetchingAC>;
 
 type MessageType = {
   id: number;
