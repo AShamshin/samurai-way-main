@@ -1,13 +1,13 @@
 .descriptionBlock {
   padding: 10px;
 }
-img {
+.ava img {
   width: 100%;
-  border-radius: 15px 15px 0 0;
+  border-radius: 15px;
 }
 
-.descriptionBlock img {
+/* .descriptionBlock img {
   width: 200px;
   height: 200px;
   border-radius: 0;
-}
+} */
