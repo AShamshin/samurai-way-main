@@ -1,13 +1,13 @@
 import dialogsReducer from './dialogs-reducer';
-import profileReducer from './profile-reducer';
+import profileReducer, { setUserProfile } from './profile-reducer';
 import sidebarReducer from './sidebar-reducer';
 import {
-  followAC,
-  setCurrentPageAC,
-  setUsersAC,
-  setUsersTotalCountAC,
-  toggleIsFetchingAC,
-  unfollowAC,
+  follow,
+  setCurrentPage,
+  setUsers,
+  setUsersTotalCount,
+  toggleIsFetching,
+  unfollow,
 } from './users-reducer';
 
 export type StoreType = {
@@ -22,12 +22,13 @@ export type ActionTypes =
   | ReturnType<typeof updateNewPostTextActionCreator>
   | ReturnType<typeof sendMessageCreator>
   | ReturnType<typeof updateNewMessageBodyCreator>
-  | ReturnType<typeof followAC>
-  | ReturnType<typeof unfollowAC>
-  | ReturnType<typeof setUsersAC>
-  | ReturnType<typeof setCurrentPageAC>
-  | ReturnType<typeof setUsersTotalCountAC>
-  | ReturnType<typeof toggleIsFetchingAC>;
+  | ReturnType<typeof follow>
+  | ReturnType<typeof unfollow>
+  | ReturnType<typeof setUsers>
+  | ReturnType<typeof setCurrentPage>
+  | ReturnType<typeof setUsersTotalCount>
+  | ReturnType<typeof setUserProfile>
+  | ReturnType<typeof toggleIsFetching>;
 
 type MessageType = {
   id: number;
@@ -45,6 +46,7 @@ export type PostType = {
 export type ProfilePageType = {
   posts: PostType[];
   newPostText: string;
+  profile: null;
 };
 export type DialogsPageType = {
   dialogs: DialogType[];
@@ -85,6 +87,7 @@ let store: StoreType = {
       ],
 
       newPostText: 'it-kamasutra.com',
+      profile: null,
     },
 
     dialogsPage: {

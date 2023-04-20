@@ -1,3 +1,4 @@
+import { profile } from 'console';
 import { StoreType } from '../../redux/store';
 import MyPostsContainer from './MyPosts/MyPostsContainer';
 import s from './Profile.module.css';
@@ -6,10 +7,10 @@ type ProfilePropsType = {
   store: StoreType;
 };
 
-const Profile = () => {
+const Profile = (props: any) => {
   return (
     <div>
-      <ProfileInfo />
+      <ProfileInfo profile={props.profile} />
       <MyPostsContainer />
     </div>
   );

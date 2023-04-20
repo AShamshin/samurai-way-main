@@ -1,6 +1,11 @@
+import Preloader from '../../common/Preloader/Preloader';
 import s from './ProfileInfo.module.css';
 
-const ProfileInfo = () => {
+const ProfileInfo = (props: any) => {
+  if (!props.profile) {
+    return <Preloader />;
+  }
+
   return (
     <div>
       <div>
@@ -9,7 +14,10 @@ const ProfileInfo = () => {
           alt='tema'
         />
       </div>
-      <div className={s.descriptionBlock}>ava + description</div>
+      <div className={s.descriptionBlock}>
+        <img src={props.profile.photos.large} alt='' />
+        ava + description
+      </div>
     </div>
   );
 };
